@@ -27,6 +27,7 @@ class MainActivity : BaseActivity() {
     override fun configureDesign() {
         this.configureViewModel()
         this.observeData()
+        this.startRequestData()
     }
 
     private fun configureViewModel(){
@@ -44,14 +45,15 @@ class MainActivity : BaseActivity() {
             } })
     }
 
-    private fun updateUI(exchangeRate: ExchangeRate){
-        Log.d("TAG", "USD Rate: ${exchangeRate.rates!!.USD}")
-        Log.d("TAG", "PLN Rate: ${exchangeRate.rates!!.PLN}")
-        Log.d("TAG", "Base Currency: ${exchangeRate.base}")
+    private fun startRequestData(){
+       // viewModel.startExchangeRateRequest();
+    }
 
-        this.txtBaseCurrency.text = "Base Currency: ${exchangeRate.base}"
-        this.txtUSDRate.text = "USD Rate: ${exchangeRate.rates!!.USD}"
-        this.txtPLNRate.text = "PLN Rate: ${exchangeRate.rates!!.PLN}"
+    private fun updateUI(exchangeRate: ExchangeRate){
+        Log.d("TAG","updateUI")
+        this.txtBaseCurrency.text = "Base Currency : ${exchangeRate.base}"
+        this.txtUSDRate.text = "USD Rate : ${exchangeRate.rates!!.USD}"
+        this.txtPLNRate.text = "PLN Rate : ${exchangeRate.rates!!.PLN}"
     }
 
 

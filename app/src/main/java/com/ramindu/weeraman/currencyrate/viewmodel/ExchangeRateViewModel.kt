@@ -1,18 +1,14 @@
 package com.ramindu.weeraman.currencyrate.viewmodel
 
+
 import android.arch.lifecycle.MutableLiveData
 import com.ramindu.weeraman.currencyrate.EXCHANGE_RATE_REFRESH_DURATION
 import com.ramindu.weeraman.currencyrate.di.OBSERVER_ON
 import com.ramindu.weeraman.currencyrate.di.SUBCRIBER_ON
 import com.ramindu.weeraman.currencyrate.model.ExchangeRate
-
 import com.ramindu.weeraman.currencyrate.repository.ExchangeRateRepository
 import io.reactivex.Observable
-
-
 import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Named
@@ -32,16 +28,16 @@ class ExchangeRateViewModel @Inject constructor(private val exchangeRateReposito
         startExchangeRateRequest()
     }
 
-    fun startExchangeRateRequest() {
-        this.disposable.addAll(Observable.interval(0, EXCHANGE_RATE_REFRESH_DURATION,
+    private fun startExchangeRateRequest() {
+        this.disposable.add(Observable.interval(0, EXCHANGE_RATE_REFRESH_DURATION,
             TimeUnit.MILLISECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(observerOn)
             .subscribe {getCurrencyExchangeRates()
             })
     }
 
     private fun getCurrencyExchangeRates(){
-        this.disposable.addAll(this.exchangeRateRepository.getExchangeRate()
+        this.disposable.add(this.exchangeRateRepository.getExchangeRate()
             .subscribeOn(subscriberOn)
             .observeOn(observerOn)
             .doOnSubscribe { this.isLoading.value = true }
