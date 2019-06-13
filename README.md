@@ -1,5 +1,5 @@
 
-# Exchnage Rate
+# Exchange Rate
 This is demo application to get currency exchange rate from below API.
 https://api.exchangeratesapi.io/latest
 ---
