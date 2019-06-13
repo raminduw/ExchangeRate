@@ -16,7 +16,9 @@ import com.ramindu.weeraman.currencyrate.viewmodel.ExchangeRateViewModel
 class MainActivity : BaseActivity() {
 
     @BindView(R.id.loadingProgressBar) lateinit var progressBar: ProgressBar
-    @BindView(R.id.txtName) lateinit var txtView: TextView
+    @BindView(R.id.txtBaseCurrency) lateinit var txtBaseCurrency: TextView
+    @BindView(R.id.txtUSDRate) lateinit var txtUSDRate: TextView
+    @BindView(R.id.txtPLNRate) lateinit var txtPLNRate: TextView
 
     private lateinit var viewModel: ExchangeRateViewModel
 
@@ -25,7 +27,6 @@ class MainActivity : BaseActivity() {
     override fun configureDesign() {
         this.configureViewModel()
         this.observeData()
-        this.fetchCurrencyExchangeRates()
     }
 
     private fun configureViewModel(){
@@ -43,18 +44,16 @@ class MainActivity : BaseActivity() {
             } })
     }
 
-
-    private fun fetchCurrencyExchangeRates(){
-       viewModel.startExchangeRateRequest()
-    }
-
     private fun updateUI(exchangeRate: ExchangeRate){
         Log.d("TAG", "USD Rate: ${exchangeRate.rates!!.USD}")
         Log.d("TAG", "PLN Rate: ${exchangeRate.rates!!.PLN}")
         Log.d("TAG", "Base Currency: ${exchangeRate.base}")
 
-        this.txtView.text = exchangeRate.base
+        this.txtBaseCurrency.text = "Base Currency: ${exchangeRate.base}"
+        this.txtUSDRate.text = "USD Rate: ${exchangeRate.rates!!.USD}"
+        this.txtPLNRate.text = "PLN Rate: ${exchangeRate.rates!!.PLN}"
     }
+
 
     private fun updateLoadingIndicator(isRefreshing: Boolean){
         if(isRefreshing)

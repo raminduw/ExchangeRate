@@ -26,10 +26,14 @@ class ExchangeRateViewModel @Inject constructor(private val exchangeRateReposito
     val isLoading: MutableLiveData<Boolean?> = MutableLiveData()
     val errorMessage: MutableLiveData<String?> = MutableLiveData()
 
-    init { this.isLoading.value = false }
+    init {
+        this.isLoading.value = false
+        //get data from API here, this will not call if device rotation event
+        startExchangeRateRequest()
+    }
 
     fun startExchangeRateRequest() {
-        this.disposable.addAll( Observable.interval(0, EXCHANGE_RATE_REFRESH_DURATION,
+        this.disposable.addAll(Observable.interval(0, EXCHANGE_RATE_REFRESH_DURATION,
             TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {getCurrencyExchangeRates()
