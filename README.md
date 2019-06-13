@@ -1,5 +1,5 @@
 
-# Exchange Rate
+# Exchange Rate(MVVM+RETROFIT2+DAGGER2)
 This is demo application to get currency exchange rate from below API.
 https://api.exchangeratesapi.io/latest
 ---
