@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Named
 
-class ExchangeRateViewModel @Inject constructor(private val exchangeRateRepository: ExchangeRateRepository,
+open class ExchangeRateViewModel @Inject constructor(private val exchangeRateRepository: ExchangeRateRepository,
                                                 @param:Named(SUBCRIBER_ON) private val subscriberOn: Scheduler,
                                                 @param:Named(OBSERVER_ON) private val observerOn: Scheduler): BaseViewModel() {
 

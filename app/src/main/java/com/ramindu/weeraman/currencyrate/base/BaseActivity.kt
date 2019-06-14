@@ -1,16 +1,15 @@
 package com.ramindu.weeraman.currencyrate.base
 
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
-import com.ramindu.weeraman.currencyrate.viewmodel.ViewModelFactory
-
 import javax.inject.Inject
 
 abstract class BaseActivity: AppCompatActivity() {
 
     // FOR DATA
-    @Inject lateinit var viewModelFactory: ViewModelFactory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     // --- LIFECYCLE METHODS ---
     override fun onCreate(savedInstanceState: Bundle?) {
