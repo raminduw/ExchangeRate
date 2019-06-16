@@ -13,3 +13,4 @@ f) Mockito unit testing</br>
 
 Note : Currency rates should be refreshed at least every minute.(Used AndroidRx interval operator).</br>
 Strictly followed MVVM architecture. This helps in proper deep Unit testing and code modularity.
+ViewModel Unit test added using mockito and Junit.
